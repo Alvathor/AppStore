@@ -1,0 +1,6 @@
+framework module CustomClass {
+  umbrella header "CustomClass-umbrella.h"
+
+  export *
+  module * { export * }
+}

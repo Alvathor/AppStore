@@ -1,0 +1,21 @@
+{
+  "name": "Common",
+  "version": "0.0.1",
+  "summary": "Common features",
+  "description": "Extensions and common features used by the entire application",
+  "homepage": "https://s3-sa-east-1.amazonaws.com/youback/Juliano+Site/index.html",
+  "license": "MIT",
+  "authors": {
+    "Juliano Alvarenga": "alvarenga.vix@gmail.com"
+  },
+  "social_media_url": "https://twitter.com/Alvathor",
+  "platforms": {
+    "ios": "12.0"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": "Common",
+  "exclude_files": "Classes/Exclude",
+  "swift_version": "4.2"
+}

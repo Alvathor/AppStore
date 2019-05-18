@@ -1,0 +1,35 @@
+PODS:
+  - Common (0.0.1)
+  - CustomClass (0.0.1)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - Service (0.0.1)
+
+DEPENDENCIES:
+  - Common (from `./Common`)
+  - CustomClass (from `./CustomClass`)
+  - SDWebImage (~> 4.4.2)
+  - Service (from `./Service`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  Common:
+    :path: "./Common"
+  CustomClass:
+    :path: "./CustomClass"
+  Service:
+    :path: "./Service"
+
+SPEC CHECKSUMS:
+  Common: 0a70a7de091ad3800ad6490954e18a92ccb605cd
+  CustomClass: 87407febaa0df3bd6e3115fb128474532258a4ce
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  Service: 16722e1ef628dde6e6bd8724e176ba7dfa6e285d
+
+PODFILE CHECKSUM: f75fffae0848e13afbf1be015eefa7596706a698
+
+COCOAPODS: 1.5.0
