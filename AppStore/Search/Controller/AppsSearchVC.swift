@@ -20,7 +20,7 @@ class AppsSearchVC: BasicCollectioView {
     }
     
     func fetchData(searchFor: String) {
-        viewModel.fetchData(searchFor: searchFor, success: { [weak self] in
+        viewModel.fetchData(searchFor: searchFor, success: { [weak self] in            
             DispatchQueue.main.async { self?.collectionView.reloadData() }
         }) { (err) in
             print(err)

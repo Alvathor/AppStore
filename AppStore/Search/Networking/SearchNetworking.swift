@@ -9,7 +9,7 @@
 import Foundation
 import Service
 
-class SearchNetworking {
+struct SearchNetworking {
     
     fileprivate let request = Request()
    
