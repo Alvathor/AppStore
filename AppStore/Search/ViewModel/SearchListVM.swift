@@ -13,7 +13,8 @@ class SearchListViewModel {
     fileprivate let networking = SearchNetworking()
     
     var searchViewModel = [SearchViewModel]()
-    fileprivate var results: [Results]? {
+    
+    fileprivate var results: [Results]! {
         didSet {
             convertToViewModel()
         }
@@ -30,7 +31,7 @@ class SearchListViewModel {
     
     fileprivate func convertToViewModel() {
         searchViewModel.removeAll()
-        results?.forEach({ searchViewModel.append($0.toViewModel())})        
+        results.forEach({ searchViewModel.append($0.toViewModel())})        
     }
     
     var count: Int {

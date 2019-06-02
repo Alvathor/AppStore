@@ -1,5 +1,5 @@
 //
-//  SearchVC+Setup.swift
+//  SearchResultCell+Setup.swift
 //  AppStore
 //
 //  Created by Juliano Alvarenga on 03/05/19.

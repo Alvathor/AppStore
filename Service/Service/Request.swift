@@ -69,32 +69,6 @@ final public class Request: UIViewController {
         return request
     }
     
-    //MARK: - Generic Request
-    func sserviceAPI<T:Codable>(method: MethodHTTP, url: URL, json: Data?, completion: @escaping(Result<T?, Error>) -> Void) {
-        var request = defineContentType(method: method, url: url)
-        if let json = json {
-            request.httpBody = json
-        }
-        let configuration = URLSessionConfiguration.default
-        let urlSession = URLSession(configuration: configuration)
-        urlSession.dataTask(with: request) { (data, resp, error) in
-            guard let httpResp = resp as? HTTPURLResponse else { return }
-            guard error == nil, httpResp.statusCode == 200 else {
-                guard let err = error else { return }
-                completion(.failure(err))
-                return
-            }
-            do {
-                guard let hasData = data else { return }
-                let obj = try JSONDecoder().decode(T.self, from: hasData)
-                completion(.success(obj))
-            } catch {
-                completion(.failure(error))
-                debugPrint(error.localizedDescription)
-            }
-            }.resume()
-    }
-    
     
     public func serviceAPI<T:Codable>(method: MethodHTTP, url: URL, json: Data?, completion: @escaping(T?, Bool) -> Void) {
         var request = defineContentType(method: method, url: url)
@@ -105,7 +79,7 @@ final public class Request: UIViewController {
         let urlSession = URLSession(configuration: configuration)
         urlSession.dataTask(with: request) { (data, resp, error) in
             guard let httpResp = resp as? HTTPURLResponse else { return }
-            guard error == nil, httpResp.statusCode == 200 else {
+            guard error == nil, 200...299 ~= httpResp.statusCode else {
                 completion(nil, false)
                 return
             }

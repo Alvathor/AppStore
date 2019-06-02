@@ -10,16 +10,21 @@ import UIKit
 
 class AppsCell: UICollectionViewCell {
     
+    let horitontalController = AppsCellCollectionVC()
     let c = AppsCellComponents()
+    var viewModel: AppsVM! {
+        didSet {            
+            horitontalController.viewModel = self.viewModel
+        }
+    }
     
     static var identifier: String  {
         return String(describing: self)
     }
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupLayout()
-        backgroundColor = .lightGray
+        super.init(frame: frame)        
+        setupLayout()        
     }
     
     required init?(coder aDecoder: NSCoder) {
