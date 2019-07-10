@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - E X T E N S I O N - COLLECTIONVIEW
 
-extension AppsCellCollectionVC {
+extension AppsCellVC {
     
     struct LayoutItem {
         static let topBottomPadding: CGFloat = 12
@@ -18,12 +18,12 @@ extension AppsCellCollectionVC {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsRowCell.identifier, for: indexPath) as! AppsRowCell
-        cell.viewModel = viewModel
+        cell.viewModel = viewModel?[indexPath.item]
         return cell
     }
     
@@ -38,5 +38,6 @@ extension AppsCellCollectionVC {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 12, left: 16, bottom: 12, right: 16)
-    }    
+    }
+    
 }

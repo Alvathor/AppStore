@@ -17,7 +17,7 @@ extension AppsVC {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsCell.identifier, for: indexPath)  as? AppsCell
             else { fatalError("No Cell no app") }
-        cell.viewModel = viewModel.appsVM[indexPath.item]        
+        cell.viewModel = viewModel.appsVM
         return cell
     }
     

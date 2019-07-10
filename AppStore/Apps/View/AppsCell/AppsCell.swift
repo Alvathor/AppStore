@@ -10,11 +10,11 @@ import UIKit
 
 class AppsCell: UICollectionViewCell {
     
-    let horitontalController = AppsCellCollectionVC()
+    let appsCellVC = AppsCellVC()
     let c = AppsCellComponents()
-    var viewModel: AppsVM! {
+    var viewModel: [AppsVM]? {
         didSet {            
-            horitontalController.viewModel = self.viewModel
+            appsCellVC.viewModel = self.viewModel
         }
     }
     

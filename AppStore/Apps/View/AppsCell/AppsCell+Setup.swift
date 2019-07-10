@@ -22,8 +22,8 @@ extension AppsCell {
     }
     
     fileprivate func setupHorizontalController() {        
-        addSubview(horitontalController.view)
-        horitontalController.view.anchor(top: c.titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        addSubview(appsCellVC.view)
+        appsCellVC.view.anchor(top: c.titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
     
 }

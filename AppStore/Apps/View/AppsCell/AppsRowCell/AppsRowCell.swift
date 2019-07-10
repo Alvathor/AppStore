@@ -12,7 +12,7 @@ import SDWebImage
 class AppsRowCell: UICollectionViewCell {
     
     let c = AppsRowCellComponents()
-    var viewModel: AppsVM! {
+    var viewModel: AppsVM? {
         didSet {
            setupIon()
         }
@@ -24,7 +24,7 @@ class AppsRowCell: UICollectionViewCell {
     }
     
     fileprivate func setupIon() {
-        c.logoImage.sd_setImage(with: URL(string: viewModel.icon ?? ""))
+        c.logoImage.sd_setImage(with: URL(string: viewModel?.icon ?? ""))
     }
     
     fileprivate func setupView() {
