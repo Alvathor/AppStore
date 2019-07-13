@@ -13,7 +13,7 @@ class AppsListVM {
     fileprivate let netowrking = AppsNetworking()
     
     var appsVM = [AppsVM]()
-    var resultsApps: [ResultsApps]! {
+    var resultsApps: [ResultsApps]? {
         didSet {
             convertToViewModel()
         }
@@ -21,7 +21,7 @@ class AppsListVM {
     
     func fetchListOfApps(success: @escaping() -> Void, onError: @escaping(String) -> Void ) {
         netowrking.fetchGames(completion: { [weak self] (resultsApps) in
-            self?.resultsApps = resultsApps            
+            self?.resultsApps = resultsApps
             success()
         }) { (err) in
             onError(err)
@@ -30,6 +30,6 @@ class AppsListVM {
     
     fileprivate func convertToViewModel() {
         appsVM.removeAll()
-        resultsApps.forEach({appsVM.append($0.toViewModel())})
+        resultsApps?.forEach({appsVM.append($0.toViewModel())})
     }
 }

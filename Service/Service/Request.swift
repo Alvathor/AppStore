@@ -69,8 +69,7 @@ final public class Request: UIViewController {
         return request
     }
     
-    
-    public func serviceAPI<T:Codable>(method: MethodHTTP, url: URL, json: Data?, completion: @escaping(T?, Bool) -> Void) {
+    public func serviceAPI<T:Codable>(method: MethodHTTP, url: URL, json: Data?, completion: @escaping(Result<T, Error>) -> Void) {
         var request = defineContentType(method: method, url: url)
         if let json = json {
             request.httpBody = json
@@ -80,16 +79,17 @@ final public class Request: UIViewController {
         urlSession.dataTask(with: request) { (data, resp, error) in
             guard let httpResp = resp as? HTTPURLResponse else { return }
             guard error == nil, 200...299 ~= httpResp.statusCode else {
-                completion(nil, false)
+                guard let err = error else { return }
+                completion(.failure(err))
                 return
             }
             do {
                 guard let hasData = data else { return }
                 let obj = try JSONDecoder().decode(T.self, from: hasData)
-                completion(obj, true)
-            } catch {
-                completion(nil, false)
-                debugPrint(error.localizedDescription)
+                completion(.success(obj))
+            } catch let err {
+                completion(.failure(err))
+                debugPrint(err.localizedDescription)
             }
         }.resume()
     }

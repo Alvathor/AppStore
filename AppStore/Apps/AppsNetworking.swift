@@ -13,18 +13,16 @@ struct AppsNetworking {
     
     fileprivate let request = Request()
 
-    func fetchGames(completion: @escaping ([ResultsApps]) -> Void, onError: @escaping (String) -> Void) {
-        
+    func fetchGames(completion: @escaping ([ResultsApps]) -> Void, onError: @escaping (String) -> Void) {        
         guard let urlString = URL(string: "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-games-we-love/all/50/explicit.json") else { return }
-        request.serviceAPI(method: .get, url: urlString, json: nil) { (result: ReturnApps?, success) in
-            guard let resp = result, let returnApps = resp.feed?.results, success == true else {
-                let msg = "Failed connections" // server msg
-                onError(msg)
-                return
-            }            
-            let compactResults = returnApps.compactMap({$0})
-            completion(compactResults)
+        request.serviceAPI(method: .get, url: urlString, json: nil) { (result: Result<ReturnApps, Error>) in
+            switch result {
+            case .failure(let err):
+                onError(err.localizedDescription)
+            case .success(let resp):
+                guard let obj = resp.feed?.results?.compactMap({$0}) else { return }                
+                completion(obj)
+            }
         }
-                
     }
 }

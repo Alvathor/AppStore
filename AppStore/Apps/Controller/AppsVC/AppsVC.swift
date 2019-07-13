@@ -21,7 +21,7 @@ class AppsVC: BasicCollectioView {
    
     fileprivate func fetchData() {
         viewModel.fetchListOfApps(success: { [weak self] in
-            DispatchQueue.main.async { self?.collectionView.reloadData()}            
+            DispatchQueue.main.async { self?.collectionView.reloadData() }            
         }) { (err) in
             print(err)
         }

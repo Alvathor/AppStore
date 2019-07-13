@@ -16,15 +16,14 @@ struct SearchNetworking {
     func fetchItunesApps(searchFor: String, _ completion: @escaping([Results]) -> Void, onError: @escaping(String) -> Void ) {
         
         let url = request.buildURLQuery(path: .search, itemsKey: ["term", "entity"], itemsValue: [searchFor, "software"])
-        request.serviceAPI(method: .get, url: url, json: nil) { (result: BaseReturn?, success) in
-            guard let resp = result, let results = resp.results, success == true else {                
-                let msg = "Failed connection" //server msg
-                onError(msg)
-                return
+        request.serviceAPI(method: .get, url: url, json: nil) { (result : Result<BaseReturn, Error>) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let resp):
+                guard let obj = resp.results?.compactMap({$0}) else { return }    
+                completion(obj)
             }
-            
-            let compactResults = results.compactMap({$0})
-            completion(compactResults)
-        }
+        }        
     }    
 }
