@@ -9,7 +9,7 @@ target 'AppStore' do
   pod 'Common', :path => './Common'
   pod 'Service', :path => './Service'
   pod 'CustomClass', :path => './CustomClass'
-  pod 'SDWebImage', '~>4.4.2’
+  pod 'SDWebImage', '~>4.4.2'
 
 end
 
